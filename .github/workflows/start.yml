@@ -47,10 +47,6 @@ jobs:
     - name: Terraform Apply AWS
       run: |
         terraform apply -auto-approve
-
-    - name: Set some summary outputs
-      run: |
-        terraform output instance_ip >> $GITHUB_STEP_SUMMARY
       
     # Removes Github Runner access
     - name: Terraform Apply AWS
