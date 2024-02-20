@@ -13,7 +13,7 @@ variable "my_ip" {
 }
 
 variable "pub_key" {
-  type = string
+  type    = string
   default = ""
 }
 

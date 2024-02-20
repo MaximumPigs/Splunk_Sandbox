@@ -1,6 +1,6 @@
 resource "aws_instance" "my_instance" {
 
-  count = 2
+  count                       = 2
   ami                         = "ami-08f0bc76ca5236b20"
   instance_type               = "t3.micro"
   key_name                    = var.key_pair
@@ -22,6 +22,6 @@ resource "aws_instance" "my_instance" {
   }
 
   user_data_base64 = base64encode(templatefile("cloudinit/userdata.tmpl", {
-    gen_key     = var.pub_key
+    gen_key = var.pub_key
   }))
 }
