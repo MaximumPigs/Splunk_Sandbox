@@ -30,6 +30,13 @@ resource "aws_vpc_security_group_ingress_rule" "ssh_inbound_my_ip" {
   ip_protocol       = "tcp"
 }
 
+resource "aws_vpc_security_group_ingress_rule" "internal" {
+  security_group_id = aws_security_group.security_group.id
+  description       = "Internal communication between hosts"
+  cidr_ipv4         = aws_subnet.subnet.cidr_block
+  ip_protocol       = -1
+}
+
 # Dynamic port based on game choice - defined in locals.tf
 
 # resource "aws_vpc_security_group_ingress_rule" "Game_Inbound" {
