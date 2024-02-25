@@ -2,7 +2,7 @@ resource "aws_instance" "cribl" {
 
   count                       = 1
   ami                         = "ami-08f0bc76ca5236b20"
-  instance_type               = "t3.small"
+  instance_type               = "t3.large"
   key_name                    = var.key_pair
   associate_public_ip_address = true
   subnet_id                   = aws_subnet.subnet.id
