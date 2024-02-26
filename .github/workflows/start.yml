@@ -14,7 +14,6 @@ jobs:
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_KEY }}
       AWS_DEFAULT_REGION: "ap-southeast-2"
       TF_VAR_my_ip: ${{ secrets.MY_IP }}
-      TF_VAR_pub_key: ${{ secrets.PUB_KEY }}
 
     # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
     defaults:

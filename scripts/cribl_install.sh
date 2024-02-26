@@ -8,11 +8,11 @@ chown -R cribl:cribl /opt/cribl_leader
 
 #Create target files and separate them
 /opt/cribl_leader/bin/cribl boot-start enable -m systemd -u cribl
-mv /etc/systemd/system/cribl.service /etc/systemd/system/cribl_leader.service
+mv /etc/systemd/system/cribl.service /etc/systemd/system/cribl-leader.service
 
 # Create appropriate symlinks for new files
 systemctl disable cribl.service
-systemctl enable cribl_leader.service
+systemctl enable cribl-leader.service
 
 # Generate a random AUTH token
 CRIBL_TOKEN=$(head /dev/urandom | LC_ALL=C tr -dc A-Za-z0-9 | head -c32 | cut -c 1-)
