@@ -16,7 +16,6 @@ systemctl enable cribl-leader.service
 
 # Generate a random AUTH token
 CRIBL_TOKEN=$(head /dev/urandom | LC_ALL=C tr -dc A-Za-z0-9 | head -c32 | cut -c 1-)
-echo "$CRIBL_TOKEN"
 
 # Generate a cert and key pair
 mkdir /opt/cribl_cert
