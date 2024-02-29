@@ -29,7 +29,7 @@ resource "aws_instance" "cribl" {
 
 resource "aws_instance" "syslog" {
 
-  count                       = 1
+  count                       = 0
   ami                         = "ami-08f0bc76ca5236b20"
   instance_type               = "t3.micro"
   key_name                    = var.key_pair
@@ -53,7 +53,7 @@ resource "aws_instance" "syslog" {
 
 resource "aws_instance" "windows" {
 
-  count                       = 1
+  count                       = 0
   ami                         = "ami-0618bc348d63ed100"
   instance_type               = "t3.medium"
   key_name                    = var.key_pair

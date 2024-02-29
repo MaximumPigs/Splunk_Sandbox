@@ -1,4 +1,4 @@
-#! /bin/bash
+#!/bin/bash
 
 # Get Cribl and separate the bin files by leader and worker
 curl -Lso /tmp/cribl.tgz $(curl https://cdn.cribl.io/dl/latest-x64)
@@ -30,7 +30,7 @@ sed -i 's/port: 9000/port: 9001/g' /opt/cribl_leader/local/cribl/cribl.yml
 chown -R cribl:cribl /opt/cribl_*
 
 # Start cribl_services
-systemctl start cribl_leader.service
+systemctl start cribl-leader.service
 
 # Bootstrap worker node from leader
 curl "http://localhost:9001/init/install-worker.sh?group=default&token=$CRIBL_TOKEN&user=cribl&install_dir=%2Fopt%2Fcribl_worker" -k | bash -
