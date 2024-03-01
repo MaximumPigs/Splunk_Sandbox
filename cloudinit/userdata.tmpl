@@ -26,10 +26,10 @@ write_files:
     content: |
       net.ipv4.conf.all.forwarding=1
 
-  - path: /tmp/cribl_install.sh
+  - path: /tmp/install.sh
     permissions: '0744'
     encoding: b64
-    content: ${cribl_install}
+    content: ${install_script}
 
 # create the docker group
 groups:
@@ -43,4 +43,4 @@ system_info:
      - "${gen_key}"
 
 runcmd:
-  - [/tmp/cribl_install.sh]
+  - [/tmp/install.sh]
