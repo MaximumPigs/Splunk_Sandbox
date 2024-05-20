@@ -1,0 +1,6 @@
+key_pair       = ""
+gh_owner       = ""
+gh_repo        = ""
+gh_branch_prod = "master"
+gh_branch_dev  = "dev"
+cribl_token    = ""

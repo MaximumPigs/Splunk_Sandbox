@@ -17,8 +17,7 @@ packages:
 users:
   - default
   - name: cribl
-    gecos: Cribl system account
-    system: true
+    gecos: Cribl service account
 
 # Enable ipv4 forwarding, required on CIS hardened machines
 write_files:
@@ -30,6 +29,11 @@ write_files:
     permissions: '0744'
     encoding: b64
     content: ${install_script}
+
+  - path: /home/cribl/.ssh/priv_key
+    permissions: '0700'
+    encoding: b64
+    content: ${priv_key}
 
 # create the docker group
 groups:
@@ -43,4 +47,5 @@ system_info:
      - "${gen_key}"
 
 runcmd:
-  - [/tmp/install.sh]
+  - [chown, cribl:cribl, /home/cribl/.ssh/priv_key]
+  - [/tmp/install.sh, -o, ${gh_owner}, -r, ${gh_repo}, -b, ${gh_branch_prod}, -d, ${gh_branch_dev}, -t, ${cribl_token}]

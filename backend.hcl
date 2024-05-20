@@ -1,3 +1,3 @@
 region = "ap-southeast-2"
-bucket = "terraform-backend-maximumpigs"
+bucket = "cg-var"
 key = "state/splunk_sandbox/infra.tfstate"
