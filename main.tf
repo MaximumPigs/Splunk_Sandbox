@@ -2,11 +2,11 @@ resource "aws_instance" "cribl" {
 
   count                       = 1
   ami                         = "ami-08f0bc76ca5236b20"
-  instance_type               = "t3.medium"
+  instance_type               = "t3.large"
   key_name                    = var.key_pair
   associate_public_ip_address = true
   vpc_security_group_ids      = ["${aws_security_group.splunk_sandbox.id}"]
-  iam_instance_profile        = aws_iam_instance_profile.s3_access.name
+  iam_instance_profile        = data.aws_iam_instance_profile.Cribl_Test_EC2_Role.name
 
   root_block_device {
     delete_on_termination = true
@@ -15,6 +15,7 @@ resource "aws_instance" "cribl" {
 
   tags = {
     "project" = "splunk_sandbox"
+    "Name"    = "Cribl_Sandbox_Grech"
   }
 
   credit_specification {
@@ -66,7 +67,7 @@ resource "aws_instance" "splunk" {
     priv_key       = ""
   }))
 }
-/*
+
 resource "aws_instance" "syslog" {
 
   count                       = 0
@@ -74,8 +75,7 @@ resource "aws_instance" "syslog" {
   instance_type               = "t3.micro"
   key_name                    = var.key_pair
   associate_public_ip_address = true
-  subnet_id                   = aws_subnet.subnet.id
-  vpc_security_group_ids      = ["${aws_security_group.security_group.id}"]
+  vpc_security_group_ids      = ["${aws_security_group.splunk_sandbox.id}"]
 
   root_block_device {
     delete_on_termination = true
@@ -90,7 +90,7 @@ resource "aws_instance" "syslog" {
     cpu_credits = "standard"
   }
 }
-
+/*
 resource "aws_instance" "windows" {
 
   count                       = 0

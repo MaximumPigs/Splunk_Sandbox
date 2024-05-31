@@ -1,3 +1,5 @@
+/* Not required anymore - but keeping for reference
+
 resource "aws_iam_policy" "s3_access" {
   name = "s3_access_cribl_output"
 
@@ -46,7 +48,10 @@ resource "aws_iam_role" "ec2_s3_access" {
   }
 }
 
-resource "aws_iam_instance_profile" "s3_access" {
-  name = "s3_access_cribl_output"
-  role = aws_iam_role.ec2_s3_access.name
+
+resource "aws_iam_instance_profile" "Cribl_Test_EC2_Role" {
+  name = "Cribl_Test_EC2_Role"
+  role = data.aws_iam_role.Cribl_Test_EC2_Role.name
 }
+
+*/
