@@ -1,0 +1,46 @@
+#cloud-config
+
+packages:
+  - apt-transport-https
+  - ca-certificates
+  - curl
+  - gnupg-agent
+  - software-properties-common
+  - net-tools
+  - s3cmd
+
+users:
+  - default
+  - name: cribl
+    gecos: Cribl service account
+
+# Enable ipv4 forwarding, required on CIS hardened machines
+write_files:
+  - path: /etc/sysctl.d/enabled_ipv4_forwarding.conf
+    content: |
+      net.ipv4.conf.all.forwarding=1
+
+  - path: /tmp/install.sh
+    permissions: '0744'
+    encoding: b64
+    content: ${install_script}
+
+  - path: /home/cribl/.ssh/priv_key
+    permissions: '0700'
+    encoding: b64
+    content: ${priv_key}
+
+# create the docker group
+groups:
+  - docker
+
+# Add default auto created user to docker group
+system_info:
+  default_user:
+    groups: [docker]
+    ssh_authorized_keys:
+     - "${gen_key}"
+
+runcmd:
+  - [chown, cribl:cribl, /home/cribl/.ssh/priv_key]
+  - [/tmp/install.sh, -o, ${gh_owner}, -r, ${gh_repo}, -b, ${gh_branch_prod}, -d, ${gh_branch_dev}, -t, ${cribl_token}]
