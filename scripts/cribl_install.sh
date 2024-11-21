@@ -49,7 +49,7 @@ GHurl="git@github.com:$GHowner/$GHrepo.git"
 # Get Cribl and separate the bin files by leader and worker
 curl -Lso /tmp/cribl.tgz $(curl https://cdn.cribl.io/dl/latest-x64)
 tar -xzf /tmp/cribl.tgz -C /opt/
-cp -R /opt/cribl /opt/cribl_leader
+mv -R /opt/cribl /opt/cribl_leader
 
 # Fetch the remote git repo
 ssh-keyscan -H github.com >> /home/cribl/.ssh/known_hosts

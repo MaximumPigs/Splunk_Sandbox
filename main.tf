@@ -6,7 +6,7 @@ resource "aws_instance" "cribl" {
   key_name                    = var.key_pair
   associate_public_ip_address = true
   vpc_security_group_ids      = ["${aws_security_group.splunk_sandbox.id}"]
-  iam_instance_profile        = data.aws_iam_instance_profile.Cribl_Test_EC2_Role.name
+  iam_instance_profile        = data.aws_iam_instance_profile.Cribl_EC2_Role.name
 
   root_block_device {
     delete_on_termination = true
@@ -42,7 +42,7 @@ resource "aws_instance" "splunk_single" {
   key_name                    = var.key_pair
   associate_public_ip_address = true
   vpc_security_group_ids      = ["${aws_security_group.splunk_sandbox.id}"]
-  iam_instance_profile        = data.aws_iam_instance_profile.Cribl_Test_EC2_Role.name
+  iam_instance_profile        = data.aws_iam_instance_profile.Cribl_EC2_Role.name
 
   root_block_device {
     delete_on_termination = true
@@ -73,7 +73,7 @@ resource "aws_instance" "splunk_uf" {
   key_name                    = var.key_pair
   associate_public_ip_address = true
   vpc_security_group_ids      = ["${aws_security_group.splunk_sandbox.id}"]
-  iam_instance_profile        = data.aws_iam_instance_profile.Cribl_Test_EC2_Role.name
+  iam_instance_profile        = data.aws_iam_instance_profile.Cribl_EC2_Role.name
 
   root_block_device {
     delete_on_termination = true
